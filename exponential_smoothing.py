@@ -7,7 +7,7 @@ def exponential_smoothing(series, alpha):
         result.append(alpha * series[n] + (1 - alpha) * result[n-1])
     return result
 
-****************************************************************************
+#****************************************************************************
 # for Holt
 # initialize level
 # initialize trend
@@ -42,13 +42,13 @@ def Holt_smoothing_damped(series, alpha, beta, phi):
         result.append(level+trend)
     return result
 
-*******************************************************************************
+#*******************************************************************************
 # for double exponential smoothing
 # initiliazes with first two points of initial trend
 def double_exponential_smoothing(series, alpha, gamma):
     pass
 
-*******************************************************************************
+#*******************************************************************************
 # for Holt-Winter
 # initialize trend: average trend across seasons
 def initial_trend(series, slen):
