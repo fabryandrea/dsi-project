@@ -3,7 +3,7 @@ from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
 
 
-class HoltWinters(BaseEstimator, RegressorMixin):
+class HoltWinters(BaseEstimator):
     """
     Holt-Winters Triple Exponential Smoothing forecasting method. This one has
     additive trend, additive seasonality, and no trend damping.

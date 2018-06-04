@@ -1,9 +1,11 @@
-# Version without scoring
 from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.utils.validation import check_X_y, check_array, check_is_fitted
+from sklearn.metrics import mean_squared_error
+from numpy import sqrt
+import numpy as np
 
 
-class HoltWinters(BaseEstimator, RegressorMixin):
+class HoltWinters(BaseEstimator):
     """
     Holt-Winters Triple Exponential Smoothing forecasting method. This one has
     additive trend, additive seasonality, and no trend damping.
@@ -112,3 +114,14 @@ class HoltWinters(BaseEstimator, RegressorMixin):
                 seasonals[i%self.slen] = self.gamma*(val-smooth) + (1-self.gamma)*seasonals[i%self.slen]
                 result.append(smooth+trend+seasonals[i%self.slen])
         return result
+
+    def score(self, X, y_true):
+        """Return RMSE score on new data.
+        Parameters
+        ----------
+        y: A series of true values.
+        """
+        y_pred = self.predict(X)
+        rms= sqrt(np.average((y_true - y_pred[-self.n_preds:]) ** 2, axis=0))
+        #rms = sqrt(mean_squared_error(y, ))
+        return rms
