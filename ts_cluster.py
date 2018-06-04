@@ -54,15 +54,13 @@ class ts_cluster(object):
 		return self.assignments
 
 	def plot_centroids(self):
+		plt.figure(figsize=(16,8))
 		for i in self.centroids:
-			plt.figure(figsize=(16,8))
 			plt.plot(i)
-		#plt.savefig('product_clusters.png', dpi=300)
-			plt.show()
-		# these two have just been added by me
-		for key, value in self.assignments.items():
-			print(key, len(self.assignments[key]))
-
+		plt.ylabel('demand in units')
+		plt.title("Six Product Types")
+		plt.savefig('product_clusters.png', dpi=300)
+		plt.show()
 
 
 	def DTWDistance(self,s1,s2,w=None):
