@@ -55,12 +55,3 @@ def make_remainder_dataframe(dataframe, product_SKUs, non_active, new_products, 
     result = set(non_active).union(new_products).union(minute_demand).union(repackage_product)
     col_names = [value for value in product_SKUs if value not in result]
     return dataframe[col_names]
-
-def prep_dataframe_for_warping(dataframe):
-    dataframe = dataframe.T
-    return np.asarray(dataframe)
-
-def assign_products(dataframe, dictionary, key_n):
-    for key, value in dictionary.items():
-        my_products = [dataframe.index[x] for x in list(dictionary[key_n])]
-    return my_products

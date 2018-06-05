@@ -39,6 +39,7 @@ def ts_train_test_split(data, split_t):
     return train_df, test_df
 
 def plot_train_test(train, test, item_label):
+    #plt.figure(figsize=(16,10))
     plt.figure(figsize=(8,4))
     plt.plot(train[item_label], label='Train')
     plt.plot(test[item_label], label='Test')
@@ -46,6 +47,7 @@ def plot_train_test(train, test, item_label):
     plt.show()
 
 def plot_time_series(train, test, item_label, yhat, yhat_label, fore_label):
+    #plt.figure(figsize=(16,10))
     plt.figure(figsize=(8,4))
     plt.plot(train[item_label], label='Train')
     plt.plot(test[item_label], label='Test')
@@ -67,6 +69,12 @@ def rename_columns(train, item_label):
     train['y'] = train[item_label]
     return train.drop([item_label], axis = 1, inplace = True)
 
+def cumulative(train):
+    return float(sum(train))/len(train)
+
+def moving_average(train, m):
+    return cumulative(train[-m:])
+
 def decompose_timeseries(train, model_kind):
     result_a = seasonal_decompose(train, model=model_kind)
     fig, (ax1,ax2,ax3) = plt.subplots(3,1, figsize=(16,10))
@@ -75,11 +83,7 @@ def decompose_timeseries(train, model_kind):
     result_a.resid.plot(ax=ax3, label='Residuals')
     plt.show()
 
-def naive(train, split_t):
-    pass
-
-def cumulative(train):
-    return float(sum(train))/len(train)
-
-def moving_average(train, m):
-    return cumulative(train[-m:])
+def create_fb_forecast(forecast, n_start, n_end):
+    forecast2 = forecast.set_index('ds')
+    forecast_slice=forecast2[n_start:n_end]
+    return forecast_slice
