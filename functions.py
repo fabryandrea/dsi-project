@@ -40,7 +40,7 @@ def ts_train_test_split(data, split_t):
 
 def plot_train_test(train, test, item_label):
     #plt.figure(figsize=(16,10))
-    plt.figure(figsize=(8,4))
+    plt.figure(figsize=(20,10))
     plt.plot(train[item_label], label='Train')
     plt.plot(test[item_label], label='Test')
     plt.legend(loc='best')
@@ -48,7 +48,7 @@ def plot_train_test(train, test, item_label):
 
 def plot_time_series(train, test, item_label, yhat, yhat_label, fore_label):
     #plt.figure(figsize=(16,10))
-    plt.figure(figsize=(8,4))
+    plt.figure(figsize=(16,10))
     plt.plot(train[item_label], label='Train')
     plt.plot(test[item_label], label='Test')
     plt.plot(yhat[yhat_label], label=fore_label)

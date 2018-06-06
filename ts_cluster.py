@@ -58,8 +58,8 @@ class ts_cluster(object):
 		for i in self.centroids:
 			plt.plot(i)
 		plt.ylabel('demand in units')
-		#plt.title("Two Product Types")
-		#plt.savefig('product_clusters_ns.png', dpi=300)
+		plt.title("Two Product Types")
+		plt.savefig('product_clusters.png', dpi=300)
 		plt.show()
 
 
